@@ -1,19 +1,19 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
-import Select from './Select';
+import { Meta, Story } from "@storybook/addon-docs/blocks";
+import Select from "./Select";
 
 <Meta title="Select" component={Select} />
 
 # Select
 
 export const ManagedSelect = () => {
-  const [value, setValue] = React.useState('newest');
+  const [value, setValue] = React.useState("newest");
   return (
     <>
       <label
         htmlFor="filter-by"
         style={{
-          display: 'block',
-          marginBottom: '0.5em',
+          display: "block",
+          marginBottom: "0.5em",
         }}
       >
         Filter by:
@@ -22,11 +22,29 @@ export const ManagedSelect = () => {
         id="filter-by"
         label="Sort"
         value={value}
-        onChange={(ev) => setValue(ev.target.value)}
+        onChange={(ev) => {
+          let rightPadding = 44;
+          let tempSelect = document.createElement("select"),
+            tempOption = document.createElement("option");
+          tempOption.textContent =
+            ev.target.options[event.target.selectedIndex].text;
+          tempSelect.style.cssText += `
+              visibility: hidden;
+              position: fixed;
+              `;
+          tempSelect.appendChild(tempOption);
+          event.target.after(tempSelect);
+          const tempSelectWidth = tempSelect.getBoundingClientRect().width;
+          ev.target.style.width = `${tempSelectWidth + rightPadding}px`;
+          tempSelect.remove();
+          setValue(ev.target.value);
+        }}
       >
         <option value="newest">Newest Releases</option>
-        <option value="price">Price</option>
+        <option value="price">By Price</option>
         <option value="curated">Curated</option>
+        <option value="loved">Loved</option>
+        <option value="unsorted">Apply Default Sort Only</option>
       </Select>
     </>
   );
