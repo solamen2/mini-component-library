@@ -13,6 +13,15 @@ const Select = ({ label, value, onChange, children}) => {
 
   return (
     <Fragment>
+      <label
+        htmlFor="filter-by"
+        style={{
+          display: "block",
+          marginBottom: "0.5em",
+        }}
+      >
+        {label}
+      </label>
       <Wrapper value={value} onChange={onChange}>
         {children}
       </Wrapper>
