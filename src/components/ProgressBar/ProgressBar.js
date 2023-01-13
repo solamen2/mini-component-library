@@ -8,7 +8,7 @@ import VisuallyHidden from '../VisuallyHidden';
 const SIZES = {
   small: {
     height: 8,
-    innerHeight: 4,
+    innerHeight: 4, 
     rx: 4
   },
   medium: {
@@ -31,8 +31,9 @@ const ProgressBar = ({ value, size }) => {
   return (
             <Fragment>
                 <span id="loadinglabel">Loading: </span>
-                <ProgressBarStyle role="progressbar" aria-labelledby="loadinglabel" aria-valuenow="23"
-                 height={PARAMS.height} borderRadius={PARAMS.rx + "px"}>
+                <ProgressBarStyle role="progressbar" 
+                    aria-labelledby="loadinglabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow={value}
+                    height={PARAMS.height} borderRadius={PARAMS.rx + "px"}>
                   <svg width={100 + (padding * 2)} height={PARAMS.height} rx={PARAMS.rx + "px"}>
                     <rect height={PARAMS.height} width={100 + (padding * 2)} stroke={COLORS.transparentGray15} fill={COLORS.transparentGray15}
                      rx={PARAMS.rx + "px"} />
@@ -53,5 +54,7 @@ const ProgressBarStyle = styled.span`
   border-radius: ${props => props.borderRadius};
   line-height: 0px;
 `;
+
+
 
 export default ProgressBar;

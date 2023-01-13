@@ -38,7 +38,7 @@ const Chevron = styled.div`
 `;
 
 const Wrapper = styled.select`
-  appearance:none;
+  appearance: none;
   border-radius: 8px;
   padding: 10px 14px;
   color: ${COLORS.gray700};

@@ -18,9 +18,13 @@ const IconInputField = styled.input`
   width: ${(p) => p.width}px;
   font-weight: 700;
   color: ${COLORS.gray700};
+  border: none;
+  border-bottom: ${(p) => p.bottomLineSize}px solid ${COLORS.black};
+  outline-offset: 2px;
+  font-size: ${(p) => p.fontSize / 16}rem;
 
   &::placeholder {
-    font-weight: normal;
+    font-weight: 400;
     color: ${COLORS.gray500};
   }
 `
@@ -65,6 +69,8 @@ const IconInput = ({
   const textWidth = Math.ceil(canvasContext.measureText(label).width);
 
   const iconSize = size === "large" ? 24 : 16;
+  const bottomLineSize = size === "large" ? 2 : 1;
+  const fontSize = size === "large" ? 18 : 14;
 
   return (
     <Wrapper class="input-wrapper" topOffset={iconSize - 16}>
@@ -72,7 +78,8 @@ const IconInput = ({
         <IconStyle className="skinnyIcon" id={icon} size={iconSize} strokeWidth="1" textWidth={textWidth}/>
         <IconStyle className="fatIcon" id={icon} size={iconSize} strokeWidth="2" textWidth={textWidth}/>
       </IconLabel>
-      <IconInputField id="icon-input" width={width} placeholder={placeholder} size={iconSize}/>
+      <IconInputField id="icon-input" width={width} placeholder={placeholder}
+          size={iconSize} bottomLineSize={bottomLineSize} fontSize={fontSize}/>
       <VisuallyHidden>{label}</VisuallyHidden>
     </Wrapper>
   );
